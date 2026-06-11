@@ -8,6 +8,7 @@ import { AdminLayout } from "./components/admin/AdminLayout";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
 import { UsersPage } from "./components/admin/UsersPage";
 import { FeedbackAdminPage } from "./components/admin/FeedbackAdminPage";
+import { EventsAdminPage } from "./components/admin/EventsAdminPage";
 import "../styles/fonts.css";
 
 export default function App() {
@@ -34,6 +35,7 @@ function AppRoutes() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<UsersPage />} />
+          <Route path="events" element={<EventsAdminPage />} />
           <Route path="feedback" element={<FeedbackAdminPage />} />
         </Route>
       </Routes>
