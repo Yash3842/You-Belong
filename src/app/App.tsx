@@ -9,6 +9,7 @@ import { AdminDashboard } from "./components/admin/AdminDashboard";
 import { UsersPage } from "./components/admin/UsersPage";
 import { FeedbackAdminPage } from "./components/admin/FeedbackAdminPage";
 import { EventsAdminPage } from "./components/admin/EventsAdminPage";
+import { LoginPage } from "./components/LoginPage";
 import "../styles/fonts.css";
 
 export default function App() {
@@ -30,6 +31,7 @@ function AppRoutes() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/help" element={<HelpPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
         {/* Admin routes - Phase 1 */}
         <Route path="/admin" element={<AdminLayout />}>
