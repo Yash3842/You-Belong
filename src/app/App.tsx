@@ -14,7 +14,7 @@ import "../styles/fonts.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/You-Belong">
       <AppRoutes />
     </BrowserRouter>
   );
