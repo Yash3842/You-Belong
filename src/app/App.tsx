@@ -10,12 +10,16 @@ import { UsersPage } from "./components/admin/UsersPage";
 import { FeedbackAdminPage } from "./components/admin/FeedbackAdminPage";
 import { EventsAdminPage } from "./components/admin/EventsAdminPage";
 import { LoginPage } from "./components/LoginPage";
+import { AuthProvider } from "./auth/AuthContext";
+import { RequireAdmin } from "./auth/RequireAdmin";
 import "../styles/fonts.css";
 
 export default function App() {
   return (
     <BrowserRouter basename="/You-Belong">
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </BrowserRouter>
   );
 }
@@ -33,8 +37,15 @@ function AppRoutes() {
         <Route path="/help" element={<HelpPage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Admin routes - Phase 1 */}
-        <Route path="/admin" element={<AdminLayout />}>
+        {/* Admin routes — staff only, guarded by RequireAdmin */}
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminLayout />
+            </RequireAdmin>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="events" element={<EventsAdminPage />} />
