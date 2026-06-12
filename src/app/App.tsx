@@ -17,7 +17,7 @@ import "../styles/fonts.css";
 
 export default function App() {
   return (
-    <BrowserRouter basename="/You-Belong">
+    <BrowserRouter basename={import.meta.env.VITE_BASE_PATH || "/"}>
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
