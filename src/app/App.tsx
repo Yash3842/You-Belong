@@ -12,6 +12,7 @@ import { EventsAdminPage } from "./components/admin/EventsAdminPage";
 import { LoginPage } from "./components/LoginPage";
 import { AuthProvider } from "./auth/AuthContext";
 import { RequireAdmin } from "./auth/RequireAdmin";
+import { RequireAuth } from "./auth/RequireAuth";
 import "../styles/fonts.css";
 
 export default function App() {
@@ -31,10 +32,38 @@ function AppRoutes() {
     <div className="min-h-screen bg-background">
       {!location.pathname.startsWith("/admin") && <Nav />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/help" element={<HelpPage />} />
+      <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <HomePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/events"
+          element={
+            <RequireAuth>
+              <EventsPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/feedback"
+          element={
+            <RequireAuth>
+              <FeedbackPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/help"
+          element={
+            <RequireAuth>
+              <HelpPage />
+            </RequireAuth>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
 
         {/* Admin routes — staff only, guarded by RequireAdmin */}
