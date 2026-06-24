@@ -6,7 +6,7 @@
 You Belong is a capstone frontend prototype designed to connect community members, partner organizations, and homelessness-awareness initiatives. It demonstrates a community-facing interface alongside an admin portal for partner organizations.
 
 ### Intended users
-- Community members / youth participants
+- Community members, youth, and residents interested in community events and homelessness awareness
 - Partner organization staff (admins) managing events, users, and feedback
 - Project stakeholders reviewing the prototype’s UI and workflow
 
@@ -157,7 +157,7 @@ Admin routes are wrapped inside `RequireAdmin`; public pages are wrapped by `Req
 ### Help / resources sections
 - FAQ expandable items
 - Step-by-step “How it works” section
-- Contact CTA links for email and phone
+- Contact CTA links for email and phone, implemented as prototype interface elements
 
 ### Mock data / placeholder behavior
 - Demo auth accounts are hardcoded in `AuthContext.tsx`
@@ -203,6 +203,15 @@ Admin routes are wrapped inside `RequireAdmin`; public pages are wrapped by `Req
 - Admin layout nav appears on `/admin` pages
 - `RequireAuth` enforces login for public pages
 - `RequireAdmin` enforces admin access for admin pages
+
+## Demo Accounts
+The prototype uses demonstration accounts only. These demo accounts are intended for testing the interface and for presentations, not for production use. All demo credentials must be replaced with a secure authentication system before deployment.
+
+### Demo account types
+| Role | Purpose |
+| --- | --- |
+| Community User | Browses events, submits feedback, and accesses public site content |
+| Admin / Partner Organization User | Reviews feedback, manages events, and manages partner-facing administration pages |
 
 ## 6. How to run the project locally
 
@@ -322,7 +331,7 @@ Potential backend resources:
 ## 10. Security and privacy considerations
 
 ### Current prototype limitations
-- Uses hardcoded credentials and plaintext passwords in frontend source
+- The current prototype uses demo-only credentials stored in the frontend source code for demonstration purposes. These accounts must be replaced with secure authentication and authorization mechanisms before any real-world deployment.
 - No encryption or secure transport controls in code
 - No real access control beyond client-side route guards
 - Session state is stored in `sessionStorage`
@@ -335,7 +344,15 @@ Potential backend resources:
 ### Feedback / data privacy concerns
 - Feedback form data is only stored temporarily and does not transit to a backend
 - User-submitted content is not stored or protected beyond page session state
+- Contact email and phone links are provided as prototype interface elements and do not represent a supported helpdesk integration
 - The design currently includes contact email/phone, but no privacy policy or data retention guidance
+
+#### Feedback and privacy considerations
+- Feedback submitted by community members is handled locally in the browser and is not persisted to any service.
+- The platform targets a sensitive user group, so any future deployment should address privacy considerations for vulnerable populations.
+- Consent requirements should be defined before collecting identifiable or sensitive information.
+- Data retention policies must be established for feedback, event participation, and support inquiries.
+- A future privacy policy should explain how data is collected, used, reviewed, and deleted.
 
 ### What must be implemented before real partner/community use
 - Real backend authentication with secure password storage or OAuth
@@ -391,6 +408,17 @@ Potential backend resources:
 - No secure authentication or data access control
 - No API layer or service abstraction
 
+### Ownership and Governance Considerations
+- The student team is handing over a prototype, not an actively maintained production service.
+- A partner organization or future project owner should be identified to maintain the platform after handoff.
+- Responsibilities for the ongoing owner include:
+  - user administration
+  - content moderation
+  - event management
+  - feedback review
+  - data governance
+- The future owner should also establish maintenance processes, support channels, and deployment oversight.
+
 ### Suggested technical roadmap
 1. Add backend API with authentication and data persistence
 2. Convert mock arrays into API-driven data sources
@@ -408,24 +436,27 @@ Potential backend resources:
 
 ## 13. Partner handoff summary
 
-### What partners can review now
-- UI design and layout of public and admin pages
-- Basic community user workflows for browsing events and submitting feedback
-- Admin portal concepts for event/user/feedback management
-- Demo authentication flows and role-based routing
+### What currently works
+- Public pages for home, events, feedback, and help
+- Admin dashboard layout and navigation
+- Event management prototype with create/edit/delete workflows in local state
+- Feedback management prototype with review and resolve actions in local state
+- Navigation, login routing, and role-based page access controls
 
 ### What is prototype-only
-- Hardcoded login credentials in frontend source
-- Local state CRUD operations with no persistence
-- UI-only quick actions and details pages without backend effects
-- Feedback submission that does not reach a server
+- Authentication is implemented as hardcoded demo credentials in frontend source
+- User management and event/feedback changes are stored only in local React state
+- No backend persistence, API integration, or database storage
+- No server-side authorization or secure role enforcement
+- Contact links and support CTA elements are interface-only prototypes
 
-### What needs future development before real-world deployment
-- Backend service with secure auth and persistent data
-- Real data storage and API integration
-- Production-grade security, error handling, and validation
-- Robust accessibility and privacy compliance
-- Monitoring, logging, and deployment environment configuration
+### What must be completed before deployment
+- Backend development and secure API integration
+- Persistent database storage for users, events, and feedback
+- Secure authentication, authorization, and session management
+- Privacy compliance, consent mechanisms, and data governance
+- Ownership assignment, maintenance responsibility, and support operations
+- Production-grade security controls, validation, and monitoring
 
 ---
 
