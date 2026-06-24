@@ -29,7 +29,7 @@ The prototype addresses the need for a simple digital experience to:
 ### Frameworks / libraries used
 - React (UI framework)
 - TypeScript (static typing)
-- React Router v7 (routing)
+- React Router (routing)
 - Vite (build tooling)
 - Tailwind CSS v4 (styling)
 - lucide-react (icons)
@@ -332,7 +332,7 @@ Potential backend resources:
 
 ### Current prototype limitations
 - The current prototype uses demo-only credentials stored in the frontend source code for demonstration purposes. These accounts must be replaced with secure authentication and authorization mechanisms before any real-world deployment.
-- No encryption or secure transport controls in code
+- No backend security controls are implemented because the prototype is frontend-only. Any future deployment must use HTTPS, secure backend APIs, and protected data storage.
 - No real access control beyond client-side route guards
 - Session state is stored in `sessionStorage`
 
@@ -408,7 +408,7 @@ Potential backend resources:
 - No secure authentication or data access control
 - No API layer or service abstraction
 
-### Ownership and Governance Considerations
+## 13. Ownership and Governance Considerations
 - The student team is handing over a prototype, not an actively maintained production service.
 - A partner organization or future project owner should be identified to maintain the platform after handoff.
 - Responsibilities for the ongoing owner include:
@@ -434,7 +434,7 @@ Potential backend resources:
 - Improve accessibility and mobile keyboard navigation
 - Add proper dev/prod configuration for environment variables
 
-## 13. Partner handoff summary
+## 14. Partner handoff summary
 
 ### What currently works
 - Public pages for home, events, feedback, and help
