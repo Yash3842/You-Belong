@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You-Belong User Workflow Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e8e8e8;
+            border-color: #999;
+        }
+        
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .public-flow { background: #ffecb3; }
+        .auth-flow { background: #c8e6c9; }
+        .admin-flow { background: #ffccbc; }
+        .user-state { background: #bbdefb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 You-Belong User Workflow</h1>
+        <p class="subtitle">Complete user journey mapping - Regular Users & Admin Users</p>
+        
+        <div class="mermaid">
+graph TD
+    Start([👤 User Visits App]) --> LoginCheck{User<br/>Authenticated?}
+    
+    LoginCheck -->|No| Login[🔐 Login Page]
+    Login --> LoginCheck
+    LoginCheck -->|Yes| UserType{User Type?}
+    
+    UserType -->|Regular User| Dashboard[🏠 Home Dashboard]
+    UserType -->|Admin User| AdminDash[⚙️ Admin Dashboard]
+    
+    Dashboard --> UserNav{User<br/>Selection}
+    UserNav -->|Home| Home["📊 View Profile<br/>& Overview"]
+    UserNav -->|Events| Events["📅 Browse Events<br/>Register/Attend"]
+    UserNav -->|Feedback| Feedback["💬 Submit Feedback<br/>View Responses"]
+    UserNav -->|Help| Help["❓ View Help<br/>Resources & FAQs"]
+    UserNav -->|Logout| Logout1([👋 Logged Out])
+    
+    Home --> UserNav
+    Events --> UserNav
+    Feedback --> UserNav
+    Help --> UserNav
+    
+    AdminDash --> AdminNav{Admin<br/>Selection}
+    AdminNav -->|Dashboard| ADashboard["📈 View Analytics<br/>System Overview"]
+    AdminNav -->|Users| Users["👥 Manage Users<br/>Roles & Access"]
+    AdminNav -->|Events| AEvents["📅 Manage Events<br/>Create/Edit/Delete"]
+    AdminNav -->|Feedback| AFeedback["💬 Review Feedback<br/>Generate Reports"]
+    AdminNav -->|Logout| Logout2([👋 Logged Out])
+    
+    ADashboard --> AdminNav
+    Users --> AdminNav
+    AEvents --> AdminNav
+    AFeedback --> AdminNav
+    
+    style Start fill:#e1f5ff
+    style Login fill:#ffecb3
+    style Dashboard fill:#c8e6c9
+    style AdminDash fill:#ffccbc
+    style LoginCheck fill:#fff9c4
+    style UserType fill:#fff9c4
+    style Home fill:#c8e6c9
+    style Events fill:#c8e6c9
+    style Feedback fill:#c8e6c9
+    style Help fill:#c8e6c9
+    style ADashboard fill:#ffccbc
+    style Users fill:#ffccbc
+    style AEvents fill:#ffccbc
+    style AFeedback fill:#ffccbc
+    style AdminNav fill:#fff9c4
+    style UserNav fill:#fff9c4
+    style Logout1 fill:#ffcccc
+    style Logout2 fill:#ffcccc
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color public-flow"></div>
+                <span>Authentication & Entry</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color auth-flow"></div>
+                <span>Regular User Flow</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color admin-flow"></div>
+                <span>Admin User Flow</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color user-state"></div>
+                <span>Decision Points</span>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <strong>📋 Workflow Summary:</strong><br>
+            • <strong>Entry Point:</strong> Users authenticate via the Login page<br>
+            • <strong>Regular Users:</strong> Access Home, Events, Feedback, and Help sections<br>
+            • <strong>Admin Users:</strong> Access restricted Admin Dashboard with user management, event management, feedback review, and analytics<br>
+            • <strong>Auth Guards:</strong> RequireAuth protects regular user routes, RequireAdmin protects admin routes
+        </div>
+        
+        <div class="controls">
+            <button class="btn-primary" onclick="downloadDiagram()">📥 Download as PNG</button>
+            <button class="btn-secondary" onclick="copySVG()">📋 Copy SVG</button>
+            <button class="btn-secondary" onclick="window.print()">🖨️ Print</button>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+        mermaid.contentLoaded();
+        
+        async function downloadDiagram() {
+            try {
+                // Get the SVG element
+                const svgElement = document.querySelector('.mermaid svg');
+                if (!svgElement) {
+                    alert('Diagram not ready yet. Please wait a moment and try again.');
+                    return;
+                }
+                
+                // Clone and prepare SVG
+                const svgClone = svgElement.cloneNode(true);
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size
+                const rect = svgElement.getBoundingClientRect();
+                canvas.width = rect.width * 2;
+                canvas.height = rect.height * 2;
+                
+                // Convert SVG to image
+                const svgString = new XMLSerializer().serializeToString(svgClone);
+                const img = new Image();
+                img.onload = function() {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    // Download
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'You-Belong-User-Workflow.png';
+                    link.click();
+                };
+                
+                img.src = 'data:image/svg+xml;base64,' + btoa(svgString);
+            } catch (error) {
+                alert('Using browser save: Right-click on diagram → Save image as PNG');
+            }
+        }
+        
+        function copySVG() {
+            const svgElement = document.querySelector('.mermaid svg');
+            if (!svgElement) {
+                alert('Diagram not ready yet.');
+                return;
+            }
+            const svgString = new XMLSerializer().serializeToString(svgElement);
+            navigator.clipboard.writeText(svgString).then(() => {
+                alert('SVG copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
